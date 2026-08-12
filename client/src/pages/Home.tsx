@@ -4,16 +4,16 @@ import { Link } from "wouter";
 import PaperTextureLayer from "../components/PaperTextureLayer";
 
 const events = [
-  { date: "18—20", month: "SEP 2026", title: "Bennett Buildathon", type: "Hackathon", image: "/manus-storage/esel-event-editorial_e99881f8.jpg" },
-  { date: "04", month: "OCT 2026", title: "Founders' Room: From spark to story", type: "Conversation", image: "/manus-storage/esel-hero_2f16a395.jpg" },
-  { date: "14", month: "OCT 2026", title: "E-Cell Cohort 04 — Open House", type: "Cohort", image: "/manus-storage/esel-paper-texture_3c6635b5.jpg" },
+  { date: "18—20", month: "SEP 2026", title: "Bennett Buildathon", type: "Hackathon", image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+  { date: "04", month: "OCT 2026", title: "Founders' Room: From spark to story", type: "Conversation", image: "https://images.unsplash.com/photo-1531536973785-e997a6373bf3?auto=format&fit=crop&w=800&q=80" },
+  { date: "14", month: "OCT 2026", title: "E-Cell Cohort 04 — Open House", type: "Cohort", image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" },
 ];
 // Add new event images to this single editable list; the rail duplicates it for a seamless loop.
 const gallery = [
-  "/manus-storage/esel-event-editorial_e99881f8.jpg",
-  "/manus-storage/esel-hero_2f16a395.jpg",
-  "/manus-storage/esel-paper-texture_3c6635b5.jpg",
-  "/manus-storage/esel-event-editorial_e99881f8.jpg",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1531536973785-e997a6373bf3?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
 ];
 const galleryTrack = [...gallery, ...gallery];
 
@@ -22,7 +22,7 @@ function Marquee({ reverse = false }: { reverse?: boolean }) { return <div class
 
 export default function Home() {
   return <div className="home">
-    <section className="hero"><div className="hero-image"><img src="/manus-storage/esel-hero_2f16a395.jpg" alt="Students collaborating in an entrepreneurship studio" /><div className="hero-scrim" /></div><div className="hero-copy"><div className="eyebrow"><span className="signal-dot" /> Bennett University · Greater Noida</div><h1>Ideas are<br /><em>common.</em><br />Momentum is not.</h1><p className="hero-intro">E-Cell is the student-powered entrepreneurship center at Bennett — a place to test the idea, meet the people, and make the first move.</p><div className="hero-actions"><Link className="lime-button" href="/events">Enter the room <ArrowUpRight size={17} /></Link><a className="text-link" href="#what-we-do">What we do <ArrowDownRight size={17} /></a></div></div><div className="hero-index">01 <span>/</span> 05</div><div className="hero-bottom"><span>Scroll to explore</span><ArrowDownRight size={18} /></div></section>
+    <section className="hero"><div className="hero-image"><img src="https://images.unsplash.com/photo-1531536973785-e997a6373bf3?auto=format&fit=crop&w=1200&q=80" alt="Students collaborating in an entrepreneurship studio" /><div className="hero-scrim" /></div><div className="hero-copy"><div className="eyebrow"><span className="signal-dot" /> Bennett University · Greater Noida</div><h1>Ideas are<br /><em>common.</em><br />Momentum is not.</h1><p className="hero-intro">E-Cell is the student-powered entrepreneurship center at Bennett — a place to test the idea, meet the people, and make the first move.</p><div className="hero-actions"><Link className="lime-button" href="/events">Enter the room <ArrowUpRight size={17} /></Link><a className="text-link" href="#what-we-do">What we do <ArrowDownRight size={17} /></a></div></div><div className="hero-index">01 <span>/</span> 05</div><div className="hero-bottom"><span>Scroll to explore</span><ArrowDownRight size={18} /></div></section>
     <Marquee />
     <section className="intro section-pad" id="what-we-do"><div className="section-aside"><SectionLabel number="01">The short version</SectionLabel></div><div className="intro-body"><p className="display-copy">We build the rooms where Bennett's <span>next ideas</span> get sharper.</p><div className="intro-grid"><p>E-Cell brings together builders, thinkers, makers, mentors, and the simply curious. Through cohorts, hackathons, founder conversations, and hands-on experiments, we turn campus energy into forward motion.</p><Link className="round-link" href="/about">Read our story <ArrowUpRight size={16} /></Link></div></div></section>
     <section className="photo-rail"><div className="photo-rail-head"><SectionLabel number="02">Lately at E-Cell</SectionLabel><span>Hover to pause · Moments worth keeping</span></div><div className="rail-viewport"><div className="rail-track">{galleryTrack.map((src, i) => <div className={`rail-photo rail-photo-${(i % gallery.length) + 1}`} key={`${src}-${i}`}><img src={src} alt="E-Cell community moment" /><span>{String((i % gallery.length) + 1).padStart(2, "0")}</span></div>)}</div></div></section>

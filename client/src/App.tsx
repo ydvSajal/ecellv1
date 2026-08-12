@@ -34,7 +34,12 @@ function SiteNav() {
   return (
     <header className={`site-nav ${scrolled ? "site-nav--scrolled" : ""}`}>
       <Link href="/" className="brand" aria-label="E-Cell home">
-        <img src="/manus-storage/esel-signal-mark_1560ede2.png" alt="" />
+        <svg width="31" height="31" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+          <rect x="4" y="4" width="2.5" height="16" rx="1.25" />
+          <rect x="9" y="4" width="2.5" height="16" rx="1.25" />
+          <rect x="14" y="8" width="2.5" height="12" rx="1.25" fill="#D9F04A" />
+          <rect x="19" y="4" width="2.5" height="16" rx="1.25" />
+        </svg>
         <span><b>E-Cell</b><small>Entrepreneurial Society at Bennett</small></span>
       </Link>
       <nav className="desktop-links" aria-label="Primary navigation">
@@ -48,7 +53,7 @@ function SiteNav() {
 }
 
 function Footer() {
-  return <footer className="footer"><div><div className="footer-mark"><img src="/manus-storage/esel-signal-mark_1560ede2.png" alt="" /><span>E-Cell</span></div><p>Ideas are common.<br /><em>Momentum is not.</em></p></div><div className="footer-links"><span>At Bennett University</span><a href="mailto:ecell@bennett.edu.in">ecell@bennett.edu.in</a><a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={14} /></a></div><div className="footer-bottom"><span>© 2026 E-Cell, Bennett University</span><span>Built by the student community</span></div></footer>;
+  return <footer className="footer"><div><div className="footer-mark"><svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, marginRight: '4px' }}><rect x="4" y="4" width="2.5" height="16" rx="1.25" /><rect x="9" y="4" width="2.5" height="16" rx="1.25" /><rect x="14" y="8" width="2.5" height="12" rx="1.25" fill="#D9F04A" /><rect x="19" y="4" width="2.5" height="16" rx="1.25" /></svg><span>E-Cell</span></div><p>Ideas are common.<br /><em>Momentum is not.</em></p></div><div className="footer-links"><span>At Bennett University</span><a href="mailto:ecell@bennett.edu.in">ecell@bennett.edu.in</a><a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram <ArrowUpRight size={14} /></a></div><div className="footer-bottom"><span>© 2026 E-Cell, Bennett University</span><span>Built by the student community</span></div></footer>;
 }
 
 function Layout({ children }: { children: React.ReactNode }) {
