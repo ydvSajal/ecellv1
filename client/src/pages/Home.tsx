@@ -1,5 +1,6 @@
 /* E-Cell Design Direction: Bennett Signal / Editorial Momentum. Homepage uses asymmetric editorial pacing, warm paper surfaces, maroon ink, lime signals, and photo-led proof. */
-import { ArrowDownRight, ArrowUpRight, CalendarDays, ChevronRight, MoveRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowDownRight, ArrowUpRight, CalendarDays, ChevronRight, MoveRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import PaperTextureLayer from "../components/PaperTextureLayer";
 
@@ -20,9 +21,68 @@ const galleryTrack = [...gallery, ...gallery];
 function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) { return <div className="section-label"><span>{number}</span><span>{children}</span></div>; }
 function Marquee({ reverse = false }: { reverse?: boolean }) { return <div className={`marquee ${reverse ? "marquee--reverse" : ""}`}><div className="marquee-track">{[0,1,2].map((set) => <div className="marquee-set" key={set}><span>MAKE IT REAL</span><i>✳</i><span>BUILD WITH OTHERS</span><i>✳</i><span>START BEFORE READY</span><i>✳</i></div>)}</div></div>; }
 
+const heroImages = [
+  "/images/hero-1.jpg",
+  "/images/hero-2.jpg",
+  "/images/hero-3.jpg",
+  "/images/hero-4.jpg",
+];
+
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [autoPlay]);
+
+  const prevSlide = () => {
+    setAutoPlay(false);
+    setCurrentSlide((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
+
+  const nextSlide = () => {
+    setAutoPlay(false);
+    setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+  };
+
   return <div className="home">
-    <section className="hero"><div className="hero-image"><img src="https://images.unsplash.com/photo-1531536973785-e997a6373bf3?auto=format&fit=crop&w=1200&q=80" alt="Students collaborating in an entrepreneurship studio" /><div className="hero-scrim" /></div><div className="hero-copy"><div className="eyebrow"><span className="signal-dot" /> Bennett University · Greater Noida</div><h1>Ideas are<br /><em>common.</em><br />Momentum is not.</h1><p className="hero-intro">E-Cell is the student-powered entrepreneurship center at Bennett — a place to test the idea, meet the people, and make the first move.</p><div className="hero-actions"><Link className="lime-button" href="/events">Enter the room <ArrowUpRight size={17} /></Link><a className="text-link" href="#what-we-do">What we do <ArrowDownRight size={17} /></a></div></div><div className="hero-index">01 <span>/</span> 05</div><div className="hero-bottom"><span>Scroll to explore</span><ArrowDownRight size={18} /></div></section>
+    <section className="hero">
+      <div className="hero-image">
+        {heroImages.map((src, idx) => (
+          <img
+            key={src}
+            src={src}
+            alt={`E-Cell community moment ${idx + 1}`}
+            className={`hero-slide-img ${idx === currentSlide ? "active" : ""}`}
+          />
+        ))}
+        <div className="hero-scrim" />
+      </div>
+      <div className="hero-copy">
+        <div className="eyebrow"><span className="signal-dot" /> Bennett University · Greater Noida</div>
+        <h1>Ideas are<br /><em>common.</em><br />Momentum is not.</h1>
+        <p className="hero-intro">E-Cell is the student-powered entrepreneurship center at Bennett — a place to test the idea, meet the people, and make the first move.</p>
+        <div className="hero-actions">
+          <Link className="lime-button" href="/events">Enter the room <ArrowUpRight size={17} /></Link>
+          <a className="text-link" href="#what-we-do">What we do <ArrowDownRight size={17} /></a>
+        </div>
+      </div>
+      <div className="hero-carousel-nav">
+        <button className="carousel-arrow" onClick={prevSlide} aria-label="Previous slide">
+          <ArrowLeft size={16} />
+        </button>
+        <span className="carousel-number">0{currentSlide + 1} <span>/</span> 0{heroImages.length}</span>
+        <button className="carousel-arrow" onClick={nextSlide} aria-label="Next slide">
+          <ArrowRight size={16} />
+        </button>
+      </div>
+      <div className="hero-bottom"><span>Scroll to explore</span><ArrowDownRight size={18} /></div>
+    </section>
     <Marquee />
     <section className="intro section-pad" id="what-we-do"><div className="section-aside"><SectionLabel number="01">The short version</SectionLabel></div><div className="intro-body"><p className="display-copy">We build the rooms where Bennett's <span>next ideas</span> get sharper.</p><div className="intro-grid"><p>E-Cell brings together builders, thinkers, makers, mentors, and the simply curious. Through cohorts, hackathons, founder conversations, and hands-on experiments, we turn campus energy into forward motion.</p><Link className="round-link" href="/about">Read our story <ArrowUpRight size={16} /></Link></div></div></section>
     <section className="photo-rail"><div className="photo-rail-head"><SectionLabel number="02">Lately at E-Cell</SectionLabel><span>Hover to pause · Moments worth keeping</span></div><div className="rail-viewport"><div className="rail-track">{galleryTrack.map((src, i) => <div className={`rail-photo rail-photo-${(i % gallery.length) + 1}`} key={`${src}-${i}`}><img src={src} alt="E-Cell community moment" /><span>{String((i % gallery.length) + 1).padStart(2, "0")}</span></div>)}</div></div></section>
