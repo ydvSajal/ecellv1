@@ -1,0 +1,36 @@
+/* E-Cell Design Direction: Bennett Signal / Editorial Momentum. Homepage uses asymmetric editorial pacing, warm paper surfaces, maroon ink, lime signals, and photo-led proof. */
+import { ArrowDownRight, ArrowUpRight, CalendarDays, ChevronRight, MoveRight } from "lucide-react";
+import { Link } from "wouter";
+import PaperTextureLayer from "../components/PaperTextureLayer";
+
+const events = [
+  { date: "18—20", month: "SEP 2026", title: "Bennett Buildathon", type: "Hackathon", image: "/manus-storage/esel-event-editorial_e99881f8.jpg" },
+  { date: "04", month: "OCT 2026", title: "Founders' Room: From spark to story", type: "Conversation", image: "/manus-storage/esel-hero_2f16a395.jpg" },
+  { date: "14", month: "OCT 2026", title: "E-Cell Cohort 04 — Open House", type: "Cohort", image: "/manus-storage/esel-paper-texture_3c6635b5.jpg" },
+];
+// Add new event images to this single editable list; the rail duplicates it for a seamless loop.
+const gallery = [
+  "/manus-storage/esel-event-editorial_e99881f8.jpg",
+  "/manus-storage/esel-hero_2f16a395.jpg",
+  "/manus-storage/esel-paper-texture_3c6635b5.jpg",
+  "/manus-storage/esel-event-editorial_e99881f8.jpg",
+];
+const galleryTrack = [...gallery, ...gallery];
+
+function SectionLabel({ number, children }: { number: string; children: React.ReactNode }) { return <div className="section-label"><span>{number}</span><span>{children}</span></div>; }
+function Marquee({ reverse = false }: { reverse?: boolean }) { return <div className={`marquee ${reverse ? "marquee--reverse" : ""}`}><div className="marquee-track">{[0,1,2].map((set) => <div className="marquee-set" key={set}><span>MAKE IT REAL</span><i>✳</i><span>BUILD WITH OTHERS</span><i>✳</i><span>START BEFORE READY</span><i>✳</i></div>)}</div></div>; }
+
+export default function Home() {
+  return <div className="home">
+    <section className="hero"><div className="hero-image"><img src="/manus-storage/esel-hero_2f16a395.jpg" alt="Students collaborating in an entrepreneurship studio" /><div className="hero-scrim" /></div><div className="hero-copy"><div className="eyebrow"><span className="signal-dot" /> Bennett University · Greater Noida</div><h1>Ideas are<br /><em>common.</em><br />Momentum is not.</h1><p className="hero-intro">E-Cell is the student-powered entrepreneurship center at Bennett — a place to test the idea, meet the people, and make the first move.</p><div className="hero-actions"><Link className="lime-button" href="/events">Enter the room <ArrowUpRight size={17} /></Link><a className="text-link" href="#what-we-do">What we do <ArrowDownRight size={17} /></a></div></div><div className="hero-index">01 <span>/</span> 05</div><div className="hero-bottom"><span>Scroll to explore</span><ArrowDownRight size={18} /></div></section>
+    <Marquee />
+    <section className="intro section-pad" id="what-we-do"><div className="section-aside"><SectionLabel number="01">The short version</SectionLabel></div><div className="intro-body"><p className="display-copy">We build the rooms where Bennett's <span>next ideas</span> get sharper.</p><div className="intro-grid"><p>E-Cell brings together builders, thinkers, makers, mentors, and the simply curious. Through cohorts, hackathons, founder conversations, and hands-on experiments, we turn campus energy into forward motion.</p><Link className="round-link" href="/about">Read our story <ArrowUpRight size={16} /></Link></div></div></section>
+    <section className="photo-rail"><div className="photo-rail-head"><SectionLabel number="02">Lately at E-Cell</SectionLabel><span>Hover to pause · Moments worth keeping</span></div><div className="rail-viewport"><div className="rail-track">{galleryTrack.map((src, i) => <div className={`rail-photo rail-photo-${(i % gallery.length) + 1}`} key={`${src}-${i}`}><img src={src} alt="E-Cell community moment" /><span>{String((i % gallery.length) + 1).padStart(2, "0")}</span></div>)}</div></div></section>
+    <section className="events-section section-pad"><div className="section-aside"><SectionLabel number="03">Make a date</SectionLabel><p>The next room is already taking shape.</p><Link href="/events" className="small-arrow-link">All events <ArrowUpRight size={14} /></Link></div><div className="events-list"><div className="section-heading-row"><h2>What's next</h2><CalendarDays size={24} /></div>{events.map((event, i) => <Link className="event-row" href="/events" key={event.title}><div className="event-date"><b>{event.date}</b><span>{event.month}</span></div><div className="event-name"><span>{event.type}</span><h3>{event.title}</h3></div><img src={event.image} alt="" /><ChevronRight className="event-chevron" /></Link>)}</div></section>
+    <Marquee reverse />
+    <section className="people-section section-pad"><div className="section-aside"><SectionLabel number="04">The people</SectionLabel><p>Good ideas get better in company.</p><Link href="/team" className="small-arrow-link">Meet the full team <ArrowUpRight size={14} /></Link></div><div className="people-content"><h2>Led by students.<br /><em>Backed by many.</em></h2><div className="leaders"><div className="leader-card leader-primary"><div className="portrait portrait-one" /><span>President · 2026—27</span><h3>Simran Kaur</h3></div><div className="leader-card"><div className="portrait portrait-two" /><span>Vice President · Programs</span><h3>Arjun Mehta</h3></div><div className="leader-card"><div className="portrait portrait-three" /><span>Vice President · Community</span><h3>Riya Sharma</h3></div></div></div></section>
+    <section className="impact-section"><div className="impact-inner"><SectionLabel number="05">What we leave behind</SectionLabel><div className="impact-copy"><h2>Not just events.<br /><span>A growing signal.</span></h2><p>Every cohort, conversation, and late-night build adds another layer to Bennett's entrepreneurial culture.</p></div><div className="impact-stats"><div><b>18</b><span>Events this year</span></div><div><b>240+</b><span>Student builders</span></div><div><b>36</b><span>Mentor hours</span></div><div><b>04</b><span>Cohorts launched</span></div></div></div></section>
+    <section className="bits-section section-pad"><div className="bits-placeholder"><PaperTextureLayer variant="paper" className="bits-shader" /><div className="bits-grid" /><div><span className="eyebrow">React Bits insertion point</span><h2>Leave room for<br /><em>something unexpected.</em></h2><p>This is where your signature interactive gallery can live — a moving archive of the work, people, and experiments that define E-Cell.</p><Link href="/about" className="text-link dark-link">See the archive <MoveRight size={17} /></Link></div></div></section>
+    <section className="newsletter-band"><div><SectionLabel number="06">The newsletter</SectionLabel><h2>Keep a pulse<br />on the <em>room.</em></h2></div><div className="newsletter-cta"><p>One thoughtful dispatch from E-Cell, whenever there is something worth sharing.</p><Link href="/newsletter" className="lime-button">Read the latest <ArrowUpRight size={17} /></Link></div></section>
+  </div>;
+}

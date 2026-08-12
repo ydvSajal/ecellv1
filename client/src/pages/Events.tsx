@@ -1,0 +1,11 @@
+/* E-Cell Design Direction: Bennett Signal / Editorial Momentum. Events are treated as an active calendar and archive, not generic cards. */
+import { ArrowUpRight, CalendarDays } from "lucide-react";
+import { Link } from "wouter";
+
+const upcoming = [
+  { date: "18—20 SEP 2026", type: "Hackathon", title: "Bennett Buildathon", desc: "A 48-hour build sprint for students who would rather prototype than postpone." },
+  { date: "04 OCT 2026", type: "Founders' Room", title: "From spark to story", desc: "A candid conversation about the messy middle between an idea and its first believer." },
+  { date: "14 OCT 2026", type: "Cohort 04", title: "Open House", desc: "Meet the next cohort, the mentors, and the questions they are carrying forward." },
+];
+const past = ["E-Cell Cohort 03 Demo Night", "Campus Product Jam", "Women Who Build", "Bennett Startup Weekend", "The First Customer Workshop"];
+export default function Events() { return <div className="page-shell"><section className="page-hero"><span className="eyebrow"><span className="signal-dot" /> The E-Cell calendar</span><h1>Find the next<br /><em>room.</em></h1><p>Some things are better understood in person. Here is where the community is gathering next.</p></section><section className="listing-section"><div className="listing-aside"><span className="section-number">01</span><p>Upcoming events</p><CalendarDays /></div><div className="listing-content">{upcoming.map((event, i) => <article className="large-event" key={event.title}><div className="event-number">0{i + 1}</div><div><span className="eyebrow">{event.date} · {event.type}</span><h2>{event.title}</h2><p>{event.desc}</p><Link href="/newsletter" className="text-link dark-link">Event details <ArrowUpRight size={16} /></Link></div><div className={`event-color-block block-${i + 1}`} /></article>)}</div></section><section className="archive-section"><span className="section-number">02</span><div><h2>What has<br /><em>happened.</em></h2><p>The archive is a record of the people who showed up before the idea was obvious.</p></div><div className="past-list">{past.map((item, i) => <Link href="/newsletter" key={item}><span>0{i + 1}</span>{item}<ArrowUpRight size={15} /></Link>)}</div></section></div>; }
